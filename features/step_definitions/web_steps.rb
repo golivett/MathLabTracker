@@ -20,7 +20,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^(?:|I )press "([^\"]*)"$/ do |button|
+When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
@@ -140,11 +140,11 @@ When /^(?:|I )attach the file "([^\"]*)" to "([^\"]*)"$/ do |path, field|
   attach_file(field, path, type)
 end
 
-Then /^(?:|I )should see "([^\"]*)"$/ do |text|
-  if defined?(Spec::Rails::Matchers)
-    response.should contain(text)
+Then(/^I shoud see "(.*?)"$/) do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
   else
-    assert_contain text
+    assert page.has_content?(text)
   end
 end
 

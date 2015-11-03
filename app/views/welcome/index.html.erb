@@ -2,6 +2,16 @@
 
 <tr><td>Enter CWID: <input type = "text" name = "CWID"></td></tr>
 
-<tr><td><input type = "submit" value = "Sign In"></td></tr>
-<tr><td><input type = "submit" value = "Student Hours"></td></tr>
-<tr><td><input type = "submit" value = "Professor Hours"></td></tr>
+<form action="/student/show" method="get">
+    <tr><td><input type = "submit" value = "Sign In"></td></tr>
+</form>
+
+
+
+<form action="/student" method="get">
+    <tr><td><input type = "submit" value = "Student Hours"></td></tr>
+</form>
+
+<form action="/professor" method="get">
+    <tr><td><input type = "submit" value = "Professor Hours"></td></tr>
+</form>

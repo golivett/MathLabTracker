@@ -10,8 +10,12 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    #do not mess with this, scenario will fail!!!
     when /the home\s?page/
       ''
+      
+      when /login/
+      '/login'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
