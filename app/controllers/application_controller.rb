@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def index
   end
  def login
-                flash[:notice] = "Thank you for signing in!"
+            flash[:notice] = "Thank you for signing in!"
   end
   
   
