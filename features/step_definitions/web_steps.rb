@@ -261,7 +261,7 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-Given /the following students exist/ do |students_table|
+Then /the following students exist/ do |students_table|
   students_table.hashes.each do |student|
    Student.create!(student)
   end
