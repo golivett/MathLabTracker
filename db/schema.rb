@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20151104002242) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "teacher"
-    t.integer  "count"
+    t.integer  "count", default: => 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

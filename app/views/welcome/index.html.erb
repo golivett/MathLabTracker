@@ -1,12 +1,17 @@
 <h1>Welcome to MathLabTracker!</h1>
 
-<tr><td>Enter CWID: <input type = "text" name = "student_CWID" id = "CWID" ></td></tr>
 
-<form action="/student/show" method="get">
+<%= form_tag("/students/show", method: "get") do %>
+  <%= label_tag(:q, "Enter CWID:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Check Hours") %>
+<% end %>
+
+<form action="/students/login/" method="get">
     <tr><td><input type = "submit" value = "Sign In"></td></tr>
 </form>
 
-<form action="/student" method="get">
+<form action="/students/show" method="get">
     <tr><td><input type = "submit" value = "Student Hours"></td></tr>
 </form>
 
@@ -14,6 +19,6 @@
     <tr><td><input type = "submit" value = "Professor Hours"></td></tr>
 </form>
 
-<form action="/student/new" method="get">
+<form action="/students/new" method="get">
     <tr><td><input type = "submit" value = "Create New Student"></td></tr>
 </form>

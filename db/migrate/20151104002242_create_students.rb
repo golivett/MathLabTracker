@@ -5,7 +5,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :teacher
-      t.integer :count
+      t.integer :count, default: 0
 
       t.timestamps null: false
     end

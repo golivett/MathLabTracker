@@ -1,3 +1,5 @@
+<h1>MathLab Profile</h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -25,5 +27,7 @@
   <%= @student.count %>
 </p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<form action="/" method="get">
+    <tr><td><input type = "submit" value = "Back"></td></tr>
+</form>
+

@@ -158,12 +158,11 @@ Then /^(?:|I )should see "([^\"]*)" within "([^\"]*)"$/ do |text, selector|
   end
 end
 
-Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
-  if defined?(Spec::Rails::Matchers)
-    response.should contain(regexp)
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
   else
-    assert_contain regexp
+    assert page.has_content?(text)
   end
 end
 
@@ -178,11 +177,11 @@ Then /^(?:|I )should see \/([^\/]*)\/ within "([^\"]*)"$/ do |regexp, selector|
   end
 end
 
-Then /^(?:|I )should not see "([^\"]*)"$/ do |text|
-  if defined?(Spec::Rails::Matchers)
-    response.should_not contain(text)
+Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_no_content(text)
   else
-    assert_not_contain text
+    assert page.has_no_content?(text)
   end
 end
 

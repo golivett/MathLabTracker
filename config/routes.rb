@@ -12,6 +12,14 @@ Rails.application.routes.draw do
  #get "demo/hello" => "your-controller#your/action"
  resources :student
  resources :professor
+ 
+ 
+ get '/students/login/:id', to: 'students#login', as: 'students_login'
+   #-------------------------------------------------------------
+   #get '/movies/director/:id', to: 'movies#director', as: 'movies_director'
+   #-------------------------------------------------------------
+   
+   
   #get "/login" => "application#index"
   
   # Example of regular route:

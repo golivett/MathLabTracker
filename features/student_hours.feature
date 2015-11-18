@@ -7,5 +7,6 @@ I want to view my hours on MathLabTracker
 Scenario: A student logs into MathLabTracker
   
   Given I am on the home page
-  When I press "Student Hours"
-  Then I shoud see "You have been in the Math Lab for"
+  When I fill in "6" for "Enter CWID:"
+  When I press "Check Hours"
+  Then I shoud see "Joshua"
