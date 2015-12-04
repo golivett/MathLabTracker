@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :students
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,11 +9,17 @@ Rails.application.routes.draw do
   
   #EXAMPLE
  #get "demo/hello" => "your-controller#your/action"
- resources :student
- resources :professor
+ 
+ get '/students/login', to: 'students#login', as: 'students_login'
+ 
+  get '/students/search', to: 'students#search', as: 'students_search'
+  
+    get '/students/professor', to: 'students#professor', as: 'students_professor'
+ 
+   resources :students
  
  
- get '/students/login/:id', to: 'students#login', as: 'students_login'
+ 
    #-------------------------------------------------------------
    #get '/movies/director/:id', to: 'movies#director', as: 'movies_director'
    #-------------------------------------------------------------

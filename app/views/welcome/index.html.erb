@@ -1,22 +1,28 @@
 <h1>Welcome to MathLabTracker!</h1>
 
 
-<%= form_tag("/students/show", method: "get") do %>
-  <%= label_tag(:q, "Enter CWID:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Check Hours") %>
+
+<%= form_tag("/students/login", :method =>:get) do %>
+  <%= label_tag(:id, "Enter CWID:") %>
+  <%= text_field_tag(:id) %>
+  <%= submit_tag("Login") %>
 <% end %>
 
-<form action="/students/sign" method="get">
-    <tr><td><input type = "submit" value = "Sign In"></td></tr>
-</form>
+<%= form_tag(students_search_path, :method =>:get) do %>
+  <%= label_tag(:id, "Enter CWID:") %>
+  <%= text_field_tag(:id) %>
+  <%= submit_tag("Search Student Hours") %>
+<% end %>
 
-<form action="/students/show" method="get">
-    <tr><td><input type = "submit" value = "Student Hours"></td></tr>
-</form>
+<%= form_tag(students_professor_path, :method =>:get) do %>
+  <%= label_tag(:id, "Enter professor:") %>
+  <%= text_field_tag(:p) %>
+  <%= submit_tag("Search Professor Hours") %>
+<% end %>
 
-<form action="/professor" method="get">
-    <tr><td><input type = "submit" value = "Professor Hours"></td></tr>
+
+<form action="/students/" method="get">
+    <tr><td><input type = "submit" value = "All Students"></td></tr>
 </form>
 
 <form action="/students/new" method="get">

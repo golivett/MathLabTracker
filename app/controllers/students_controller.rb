@@ -1,11 +1,15 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy, :login, :sign]
+  before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   # GET /students
   # GET /students.json
-  def index
-    @students = Student.all
-  end
+
+
+def index
+  @students = Student.all
+end
+
+
 
   # GET /students/1
   # GET /students/1.json
@@ -63,7 +67,8 @@ class StudentsController < ApplicationController
     end
   end
     def login
-    @student = Student.find(params[:id])
+    @cwid = params[:id]
+    @student = Student.where(cwid: @cwid).take
     @count = @student.count
     @count = @count + 1
     #@student.count = @student.count + 1
@@ -71,6 +76,15 @@ class StudentsController < ApplicationController
     @student.update_attributes!(:count => @count)
     end
     
+    def search
+    @cwid = params[:id]
+    @student = Student.where(cwid: @cwid).take
+    end
+    
+    def professor
+      @professor = params[:p]
+      @students = Student.where(teacher: @professor)
+    end
     
   private
     # Use callbacks to share common setup or constraints between actions.

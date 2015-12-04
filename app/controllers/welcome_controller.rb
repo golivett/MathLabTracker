@@ -1,9 +1,7 @@
 class WelcomeController < ApplicationController
   def index
+    @all_professors = Student.all_professors
   end
   
-  def login
-    flash[:notice] = "Thanks for loggin in!"
-  end
   
 end
