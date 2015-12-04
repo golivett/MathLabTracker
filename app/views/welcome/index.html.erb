@@ -2,16 +2,11 @@
 
 
 
-<%= form_tag("/students/login", :method =>:get) do %>
+	<%= form_tag(students_submit_path, :method =>:get) do %>
   <%= label_tag(:id, "Enter CWID:") %>
   <%= text_field_tag(:id) %>
   <%= submit_tag("Login") %>
-<% end %>
-
-<%= form_tag(students_search_path, :method =>:get) do %>
-  <%= label_tag(:id, "Enter CWID:") %>
-  <%= text_field_tag(:id) %>
-  <%= submit_tag("Search Student Hours") %>
+  <%= submit_tag("Check Hours") %>
 <% end %>
 
 <%= form_tag(students_professor_path, :method =>:get) do %>

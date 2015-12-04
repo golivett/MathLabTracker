@@ -66,13 +66,13 @@ end
       format.json { head :no_content }
     end
   end
+  
     def login
     @cwid = params[:id]
     @student = Student.where(cwid: @cwid).take
     @count = @student.count
     @count = @count + 1
-    #@student.count = @student.count + 1
-    #@student.save!
+
     @student.update_attributes!(:count => @count)
     end
     
@@ -84,6 +84,19 @@ end
     def professor
       @professor = params[:p]
       @students = Student.where(teacher: @professor)
+    end
+    
+    def submit
+    @cwid = params[:id]
+    @student = Student.where(cwid: @cwid).take
+    if params[:commit] == 'Login'
+      @count = @student.count
+       @count = @count + 1
+      @student.update_attributes!(:count => @count)
+        render :login
+    elsif params[:commit] == 'Check Hours'
+        render :search
+    end
     end
     
   private
