@@ -90,10 +90,18 @@ end
     @cwid = params[:id]
     @student = Student.where(cwid: @cwid).take
     if params[:commit] == 'Login'
+      respond_to do |format|
+      if @student.updated_at.beginning_of_day == DateTime.now.beginning_of_day
+        format.html { redirect_to @student, notice: 'Sorry, student has already logged in today.' }
+        format.json { render :show, location: @student }
+      else
       @count = @student.count
        @count = @count + 1
+      @student.update_attributes!(:updated_at => DateTime.now.beginning_of_day)
       @student.update_attributes!(:count => @count)
-        render :login
+         format.html { render 'login'}
+      end
+    end
     elsif params[:commit] == 'Check Hours'
         render :search
     end
