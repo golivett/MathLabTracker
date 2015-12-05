@@ -116,6 +116,32 @@ end
     end
     end
     
+    def profs
+      if params[:pass] == 'mathisfun'
+        if params[:commit] == 'Delete'
+        @cwid = params[:id]
+        @student = Student.where(cwid: @cwid).take
+        @student.destroy
+        respond_to do |format|
+          format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+          format.json { head :no_content }
+          end
+
+        elsif  params[:commit] == 'Delete All'
+          Student.delete_all
+          respond_to do |format|
+            format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
+            format.json { head :no_content }
+            end
+          end
+        elsif
+          respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
+      format.json { head :no_content }
+    end
+        end
+      end
+    
     def poof
       if params[:pass] == 'mathisfun'
     @cwid = params[:id]
@@ -131,6 +157,15 @@ end
       format.json { head :no_content }
     end
     end
+    end
+    
+    def purge
+      #This will delete all students
+      Student.delete_all
+      respond_to do |format|
+      format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
+      format.json { head :no_content }
+        end
     end
     
   private

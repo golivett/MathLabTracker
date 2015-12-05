@@ -11,7 +11,7 @@
       <th>Teacher</th>
       <th>Visits</th>
       <th>Created At</th>
-      <th>Updated At</th>
+      <th>Last Login</th>
       <th colspan="6"></th>
     </tr>
   </thead>
@@ -34,12 +34,13 @@
 
 <br>
 
-<%= form_tag(students_poof_path, :method =>:post) do %>
+<%= form_tag(students_profs_path, :method =>:post) do %>
   <%= label_tag(:id, "Enter CWID:") %>
   <%= text_field_tag(:id) %>
   <%= label_tag(:id, "Enter Password:") %>
   <%= password_field_tag :pass %>
   <%= submit_tag("Delete") %>
+  <%= submit_tag("Delete All", data: { confirm: 'WARNING: THIS WILL DELETE ALL STUDENTS' }) %>
 <% end %>
 
 
