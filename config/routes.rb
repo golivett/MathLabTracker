@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   #EXAMPLE
  #get "demo/hello" => "your-controller#your/action"
  
+   post '/students/poof', to: 'students#poof', as: 'students_poof'
+ 
   get '/students/submit', to: 'students#submit', as: 'students_submit'
  
  get '/students/login', to: 'students#login', as: 'students_login'

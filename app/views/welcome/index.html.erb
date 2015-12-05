@@ -2,7 +2,7 @@
 
 
 
-	<%= form_tag(students_submit_path, :method =>:get) do %>
+<%= form_tag(students_submit_path, :method =>:get) do %>
   <%= label_tag(:id, "Enter CWID:") %>
   <%= text_field_tag(:id) %>
   <%= submit_tag("Login") %>
@@ -10,8 +10,8 @@
 <% end %>
 
 <%= form_tag(students_professor_path, :method =>:get) do %>
-  <%= label_tag(:id, "Enter professor:") %>
-  <%= text_field_tag(:p) %>
+  <%= label_tag(:id, "Select Professor:") %>
+  <%= select_tag "p", options_for_select(@professors, "id") %>
   <%= submit_tag("Search Professor Hours") %>
 <% end %>
 

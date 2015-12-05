@@ -27,6 +27,16 @@
   <%= @student.count %>
 </p>
 
+<p>
+  <strong>Created On:</strong>
+  <%= @student.created_at %>
+</p>
+
+<p>
+  <strong>Last Logged In:</strong>
+  <%= @student.updated_at %>
+</p>
+
 <form action="/" method="get">
     <tr><td><input type = "submit" value = "Back"></td></tr>
 </form>

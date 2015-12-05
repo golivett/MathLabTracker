@@ -24,8 +24,7 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :teacher %><br>
-    <%= f.text_field :teacher %>
+  <%= select_tag "student[teacher]", options_for_select(@professors, "student[teacher]") %>
   </div>
   <div class="actions">
     <%= f.submit %>

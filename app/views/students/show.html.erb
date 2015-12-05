@@ -23,8 +23,18 @@
 </p>
 
 <p>
-  <strong>Count:</strong>
+  <strong>Visits:</strong>
   <%= @student.count %>
+</p>
+
+<p>
+  <strong>Created On:</strong>
+  <%= @student.created_at %>
+</p>
+
+<p>
+  <strong>Last Logged In:</strong>
+  <%= @student.updated_at %>
 </p>
 
 <form action="/" method="get">

@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
+    @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
   # GET /students
   # GET /students.json
 
@@ -20,6 +21,7 @@ end
 
   # GET /students/new
   def new
+        @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
     @student = Student.new
   end
 
@@ -30,12 +32,19 @@ end
   # POST /students
   # POST /students.json
   def create
+        @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
     @student = Student.new(student_params)
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        if @student != Student.where(cwid: @student.CWID).first
+          @student.destroy
+        format.html { redirect_to @student, notice: 'Sorry, a student with this CWID already exists.' }
+        format.json { render :show, location: @student }
+        elsif
+        format.html { redirect_to @student, notice: 'Student was successfully created and logged in.' }
         format.json { render :show, status: :created, location: @student }
+      end
       else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -104,6 +113,23 @@ end
     end
     elsif params[:commit] == 'Check Hours'
         render :search
+    end
+    end
+    
+    def poof
+      if params[:pass] == 'mathisfun'
+    @cwid = params[:id]
+    @student = Student.where(cwid: @cwid).take
+    @student.destroy
+    respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+      elsif
+          respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
+      format.json { head :no_content }
+    end
     end
     end
     

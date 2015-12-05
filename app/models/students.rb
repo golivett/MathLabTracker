@@ -9,7 +9,7 @@ def self.search(search)
 end
 
   def self.all_professors
-    %w(Florez Moore Trautman Rudolph Verdicchio)
+    %w(Florez, Moore, Trautman, Rudolph, Verdicchio)
   end
 
 

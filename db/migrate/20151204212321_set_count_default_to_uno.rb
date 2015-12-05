@@ -1,4 +1,4 @@
-class SetCountToDefaultValue < ActiveRecord::Migration
+class SetCountDefaultToUno < ActiveRecord::Migration
   def change
     change_table :students do |t|
     t.remove :count
