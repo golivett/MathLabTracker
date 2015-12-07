@@ -24,6 +24,7 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
+  <%= label_tag(:professor, "Professor") %>
   <%= select_tag "student[teacher]", options_for_select(@professors, "student[teacher]") %>
   </div>
   <div class="actions">

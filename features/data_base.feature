@@ -13,3 +13,4 @@ Scenario: A student database exists
   | 10518786 | Joshua      | Terry     | Florez     | 0     |
   | 10517115 | Christopher | Landry    | Verdicchio | 0     |
   | 10517555 | William     | Sloane    | Rudolph    | 0     |
+

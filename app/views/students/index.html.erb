@@ -10,7 +10,6 @@
       <th>Last name</th>
       <th>Teacher</th>
       <th>Visits</th>
-      <th>Created At</th>
       <th>Last Login</th>
       <th colspan="6"></th>
     </tr>
@@ -24,9 +23,9 @@
         <td><%= student.last_name %></td>
         <td><%= student.teacher %></td>
         <td><%= student.count %></td>
-        <td><%= student.created_at %></td>
-        <td><%= student.updated_at %></td>
+        <td><%= student.login_date %></td>
         <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,8 +38,8 @@
   <%= text_field_tag(:id) %>
   <%= label_tag(:id, "Enter Password:") %>
   <%= password_field_tag :pass %>
-  <%= submit_tag("Delete") %>
-  <%= submit_tag("Delete All", data: { confirm: 'WARNING: THIS WILL DELETE ALL STUDENTS' }) %>
+  <%= submit_tag("Delete", data: { confirm: 'WARNING: The student will be permanently removed!' }) %>
+  <%= submit_tag("Delete All", data: { confirm: 'WARNING: This will delete ALL students!' }) %>
 <% end %>
 
 

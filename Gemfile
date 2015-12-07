@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
   gem 'launchy'
 
 group :test do
+  gem 'simplecov', :require => false
   gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'

@@ -9,7 +9,9 @@ Scenario: User doesn't exist
   Given I am on the home page
   When I press "Create New Student"
   Then I should see "New Student"
+  When I fill in "10519876" for "Cwid"
+  When I fill in "John" for "First name"
+  When I fill in "Smith" for "Last name"
+  When I press "Create Student"
+  Then I should see "Student was successfully created."
   
-  Given I am on the home page
-  When I press "Create New Student"
-  Then I should not see "Thank you for signing in"

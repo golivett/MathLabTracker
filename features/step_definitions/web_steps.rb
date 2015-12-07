@@ -20,7 +20,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^(?:|I )press "([^"]*)"$/ do |button|
+When(/^I press "(.*?)"$/) do |button|
   click_button(button)
 end
 
@@ -177,7 +177,7 @@ Then /^(?:|I )should see \/([^\/]*)\/ within "([^\"]*)"$/ do |regexp, selector|
   end
 end
 
-Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+Then(/^I should not see "(.*?)"$/) do |text|
   if page.respond_to? :should
     page.should have_no_content(text)
   else
@@ -260,9 +260,14 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-Then /the following students exist/ do |students_table|
+#Then /the following students exist/ do |students_table|
+ # students_table.hashes.each do |student|
+ #  Student.create!(student)
+ # end
+#end
+  
+  Given /the following students exist/ do |students_table|
   students_table.hashes.each do |student|
    Student.create!(student)
   end
-
 end

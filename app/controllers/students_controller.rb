@@ -27,6 +27,7 @@ end
 
   # GET /students/1/edit
   def edit
+    @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
   end
 
   # POST /students
@@ -42,12 +43,12 @@ end
         format.html { redirect_to @student, notice: 'Sorry, a student with this CWID already exists.' }
         format.json { render :show, location: @student }
         elsif
-        format.html { redirect_to @student, notice: 'Student was successfully created and logged in.' }
+        format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       end
       else
-        format.html { render :new }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        #format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,40 +56,48 @@ end
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+    @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
+    if params[:pass] == 'mathisfun'
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { render :show, status: :ok, location: @student }
       else
-        format.html { render :edit }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+        #format.html { render :edit }
+        #format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+     else
+        respond_to do |format|
+       format.html { redirect_to @student, notice: 'Sorry, that password was incorrect.' }
+       format.json { head :no_content }
+       end
+     end
   end
 
   # DELETE /students/1
   # DELETE /students/1.json
-  def destroy
-    @student.destroy
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @student.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
   
-    def login
-    @cwid = params[:id]
-    @student = Student.where(cwid: @cwid).take
-    @count = @student.count
-    @count = @count + 1
+    # def login
+    # @cwid = params[:id]
+    # @student = Student.where(cwid: @cwid).take
+    # @count = @student.count
+    # @count = @count + 1
 
-    @student.update_attributes!(:count => @count)
-    end
+    # @student.update_attributes!(:count => @count)
+    # end
     
-    def search
-    @cwid = params[:id]
-    @student = Student.where(cwid: @cwid).take
-    end
+    # def search
+    # @cwid = params[:id]
+    # @student = Student.where(cwid: @cwid).take
+    # end
     
     def professor
       @professor = params[:p]
@@ -100,13 +109,13 @@ end
     @student = Student.where(cwid: @cwid).take
     if params[:commit] == 'Login'
       respond_to do |format|
-      if @student.updated_at.beginning_of_day == DateTime.now.beginning_of_day
+      if @student.login_date.beginning_of_day == DateTime.now.beginning_of_day
         format.html { redirect_to @student, notice: 'Sorry, student has already logged in today.' }
         format.json { render :show, location: @student }
       else
       @count = @student.count
        @count = @count + 1
-      @student.update_attributes!(:updated_at => DateTime.now.beginning_of_day)
+      @student.update_attributes!(:login_date => DateTime.now.beginning_of_day)
       @student.update_attributes!(:count => @count)
          format.html { render 'login'}
       end
@@ -116,7 +125,9 @@ end
     end
     end
     
+    #professor submit ( edit a student, or delete a student, or delete all students)
     def profs
+      @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
       if params[:pass] == 'mathisfun'
         if params[:commit] == 'Delete'
         @cwid = params[:id]
@@ -134,39 +145,39 @@ end
             format.json { head :no_content }
             end
           end
-        elsif
+        else
           respond_to do |format|
       format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
       format.json { head :no_content }
     end
-        end
+  end
       end
     
-    def poof
-      if params[:pass] == 'mathisfun'
-    @cwid = params[:id]
-    @student = Student.where(cwid: @cwid).take
-    @student.destroy
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-      elsif
-          respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
-      format.json { head :no_content }
-    end
-    end
-    end
+    # def poof
+    #   if params[:pass] == 'mathisfun'
+    # @cwid = params[:id]
+    # @student = Student.where(cwid: @cwid).take
+    # @student.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+    #   elsif
+    #       respond_to do |format|
+    #   format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
+    #   format.json { head :no_content }
+    # end
+    # end
+    # end
     
-    def purge
+    #def purge
       #This will delete all students
-      Student.delete_all
-      respond_to do |format|
-      format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
-      format.json { head :no_content }
-        end
-    end
+      #Student.delete_all
+     # respond_to do |format|
+     # format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
+     # format.json { head :no_content }
+     #   end
+    #end
     
   private
     # Use callbacks to share common setup or constraints between actions.

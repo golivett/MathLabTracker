@@ -1,7 +1,6 @@
 <h1>MathLab Profile</h1>
 
 <p id="notice"><%= notice %></p>
-<p id="problem"><%= problem %></p>
 
 <p>
   <strong>Cwid:</strong>
@@ -34,7 +33,12 @@
 </p>
 
 <p>
-  <strong>Last Logged In:</strong>
+  <strong>Last Login:</strong>
+  <%= @student.login_date %>
+</p>
+
+<p>
+  <strong>Last Update:</strong>
   <%= @student.updated_at %>
 </p>
 
