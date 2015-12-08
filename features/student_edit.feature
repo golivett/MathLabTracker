@@ -1,4 +1,8 @@
-Feature: Admin can edit a student account
+Feature: Administrator can edit a student account
+  
+  As a teacher at The Citadel
+  So that I can change student details
+  I need to be able to edit student accounts
   
 Scenario: An admin edits an account
   

@@ -1,4 +1,9 @@
 Feature: A professor can search their students
+  
+  As a teacher at the Citadel
+  I need to be able to search the database of students
+  So I can see how many hours my students have been to the math lab
+  
 
 Scenario: Professor can see the logs of their students
   

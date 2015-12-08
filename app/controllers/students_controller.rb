@@ -85,14 +85,13 @@ end
   #   end
   # end
   
-    # def login
-    # @cwid = params[:id]
-    # @student = Student.where(cwid: @cwid).take
-    # @count = @student.count
-    # @count = @count + 1
-
-    # @student.update_attributes!(:count => @count)
-    # end
+    def login
+    @cwid = params[:id]
+    @student = Student.where(cwid: @cwid).take
+    @count = @student.count
+    @count = @count + 1
+    @student.update_attributes!(:count => @count)
+    end
     
     # def search
     # @cwid = params[:id]
@@ -109,13 +108,13 @@ end
     @student = Student.where(cwid: @cwid).take
     if params[:commit] == 'Login'
       respond_to do |format|
-      if @student.login_date.beginning_of_day == DateTime.now.beginning_of_day
+      if @student.login_date == Date.today
         format.html { redirect_to @student, notice: 'Sorry, student has already logged in today.' }
         format.json { render :show, location: @student }
       else
       @count = @student.count
        @count = @count + 1
-      @student.update_attributes!(:login_date => DateTime.now.beginning_of_day)
+      @student.update_attributes!(:login_date => Date.today)
       @student.update_attributes!(:count => @count)
          format.html { render 'login'}
       end
@@ -128,23 +127,12 @@ end
     #professor submit ( edit a student, or delete a student, or delete all students)
     def profs
       @professors = ["Florez", "Moore", "Rudolph", "Trautman", "Verdicchio"]
-      if params[:pass] == 'mathisfun'
-        if params[:commit] == 'Delete'
+      if params[:pass] == 'mathisfun' && params[:commit] == 'Delete'
         @cwid = params[:id]
         @student = Student.where(cwid: @cwid).take
-        @student.destroy
-        respond_to do |format|
-          format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-          format.json { head :no_content }
-          end
-
-        elsif  params[:commit] == 'Delete All'
-          Student.delete_all
-          respond_to do |format|
-            format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
-            format.json { head :no_content }
-            end
-          end
+        poof(@cwid)
+        elsif  params[:pass] == 'mathisfun' && params[:commit] == 'Delete All'
+          purge()
         else
           respond_to do |format|
       format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
@@ -153,31 +141,26 @@ end
   end
       end
     
-    # def poof
-    #   if params[:pass] == 'mathisfun'
-    # @cwid = params[:id]
-    # @student = Student.where(cwid: @cwid).take
-    # @student.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
-    #   elsif
-    #       respond_to do |format|
-    #   format.html { redirect_to students_url, notice: 'Sorry, that password was incorrect.' }
-    #   format.json { head :no_content }
-    # end
-    # end
-    # end
+    def poof (cwid)
+    @cwid = cwid
+    @student = Student.where(cwid: @cwid).take
+    @student.destroy
+    respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
+
+    end
     
-    #def purge
+    def purge
       #This will delete all students
-      #Student.delete_all
-     # respond_to do |format|
-     # format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
-     # format.json { head :no_content }
-     #   end
-    #end
+      Student.delete_all
+      respond_to do |format|
+      format.html { redirect_to students_url, notice: 'All students have now been deleted.' }
+      format.json { head :no_content }
+        end
+    end
     
   private
     # Use callbacks to share common setup or constraints between actions.

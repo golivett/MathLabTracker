@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-  gem 'capybara'
+
   gem 'launchy'
 
 group :test do
@@ -39,6 +39,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development, :test do

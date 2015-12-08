@@ -1,25 +1,59 @@
-<h1>Welcome to MathLabTracker!</h1>
+<center><img src="http://www.winstonchurchill.org/images/chartwellbulletins/images/events/citadel%20logo.gif" alt="HTML5 Icon" ></center>
+<br>
 
-
-
+<h1><center>Welcome to MathLabTracker!</center></h1>
+<br>
+<br><br>
+<br><br>
+<center>
 <%= form_tag(students_submit_path, :method =>:get) do %>
   <%= label_tag(:id, "Enter CWID:") %>
   <%= text_field_tag(:id) %>
-  <%= submit_tag("Login") %>
+  <p>
+  <%= submit_tag("Login", data: { confirm: 'By signing in, you agree that you are in the Citadel Math Lab, and signing in only yourself.' }) %>
   <%= submit_tag("Check Hours") %>
+  </p>
 <% end %>
 
+</center>
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+<center>
 <%= form_tag(students_professor_path, :method =>:get) do %>
   <%= label_tag(:id, "Select Professor:") %>
   <%= select_tag "p", options_for_select(@professors, "id") %>
   <%= submit_tag("Search Professor Hours") %>
 <% end %>
+</center>
 
+<br><br>
+
+<!--<br><br>-->
+<!--<br><br>-->
+<!--<br><br>-->
+
+<center>
 
 <form action="/students/" method="get">
-    <tr><td><input type = "submit" value = "All Students"></td></tr>
+    <input type = "submit" value = "All Students">
 </form>
 
 <form action="/students/new" method="get">
-    <tr><td><input type = "submit" value = "Create New Student"></td></tr>
+    <input type = "submit" value = "Create New Student">
 </form>
+
+
+
+<footer>
+  
+  <a href="http://www.citadel.edu/root/images/Academic_Support_Center/math%20lab%20flyer%20fall%202015%201.pdf">Click to view the Citadel Math Lab's Schedule</a>
+  
+</footer>
+
+</center>
