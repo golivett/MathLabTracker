@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151207062110) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "count",      default: 0
-    t.date     "login_date", default: '2015-12-06'
+    t.date     "login_date", default: '2016-10-19'
   end
 
 end

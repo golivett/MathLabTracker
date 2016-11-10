@@ -17,13 +17,15 @@ students.each do |student|
   Student.create!(student)
 end
 
-professors = [{:name => 'Florez'},
-              {:name => 'Moore'},
-              {:name => 'Trautman'},
-              {:name => 'Rudolph'},
-              {:name => 'Verdicchio'}
-  ]
+
+#professors = [{:name => 'Florez'},
+ #             {:name => 'Moore'},
+  #            {:name => 'Trautman'},
+   #           {:name => 'Rudolph'},
+    ##          {:name => 'Verdicchio'}
+  #]
   
-  professors.each do |professor|
-  Professor.create!(professor)
-end
+  #professors.each do |professor|
+  #Professor.create!(professor)
+#end
+
